@@ -1,0 +1,86 @@
+<section class="custom-container">
+    <div id="profile_">
+        <div class="">
+            <!-- <pre>{{ImageUrl+'Profile/'+userDetails?.profilePic}}</pre> -->
+            <span class="bg_profile">
+                <div class="no_image"></div>
+                <!-- <img src="../../../../../assets/images/img/iceburg3.jpg" alt="profile cover image"> -->
+            </span>
+            <span class="profile_image">
+                <div class="pic-holder" [ngStyle]="{'border': userDetails?.profilePic == null? '2px dashed #838181': '1px solid #fff0'}" style="margin: -72px 0px 0px 10px;">
+                    <ng-container *ngIf="urls.length == 0">
+                        <img class="pic" 
+                        [src]="userDetails?.profilePic == null? '../../../../../assets/images/img/users.png'
+                         : ImageUrl+'Profile/'+userDetails?.profilePic">
+                    </ng-container>
+                    <ng-container *ngIf="urls.length > 0">
+                        <img *ngFor="let url of urls" [src]="url" class="pic">
+                    </ng-container>
+                    <Input class="uploadProfileInput" type="file" (change)="profilePicUpload($event)" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+                    <label for="newProfilePhoto" class="upload-file-block">
+                        <div class="text-center">
+                            <div class="mb-2">
+                                <i class="fa fa-camera fa-2x"></i>
+                            </div>
+                            <div class="text-uppercase">Update <br /> Profile Photo</div>
+                        </div>
+                    </label>
+                </div>
+            </span> 
+            <span>
+                <a class="edit_profile2" (click)="editProfile()">
+                    <i class="icon feather icon-edit text-c-grey"></i>
+                </a>
+                <button class="btn btn-primary edit_profile1" (click)="editProfile()">
+                    <i class="icon feather icon-edit text-c-grey"></i> Edit
+                </button>
+            </span>
+        </div>
+        <ng-container *ngIf="userDetails != null">
+            <div class="row profile_content">
+                <div class="col-md-4 profile_in">
+                    <h4>Personal details</h4>
+                    <table>
+                        <tr>
+                            <th>Fullname</th>
+                            <td>: {{userDetails?.fullname}}</td>
+                        </tr>
+                        <tr>
+                            <th>username</th>
+                            <td>: {{userDetails?.username}}</td>
+                        </tr>
+                        <ng-container *ngIf="userDetails?.uniqueId">
+                            <tr>
+                                <th>Refer ID</th>
+                                <td>: {{userDetails?.uniqueId}}</td>
+                            </tr>
+                        </ng-container>
+                        <tr>
+                            <th>Email ID</th>
+                            <td>: {{userDetails?.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone No</th>
+                            <td>: {{userDetails?.phone}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-4 profile_in">
+                    <h4>Usage details</h4>
+                    <table>
+                        <tr>
+                            <th>Using From</th>
+                            <td>: 16/09/2023</td>
+                        </tr>
+                        <tr>
+                            <th>No. of Days</th>
+                            <td>: 28</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
+
+<app-user *ngIf="openUserModel" [closeModel]="openUserModel" [Uid]="UserIds" (closeEvent)="checkClosed($event)"></app-user>

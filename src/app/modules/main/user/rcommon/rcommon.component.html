@@ -1,0 +1,28 @@
+<section class="card latest-update-card">
+    <div class="card-header">
+        <h5>{{currentMode}}</h5>
+        <div class="card-header-right">
+            <div class="btn-group card-option">
+                <a class="p-2">
+                    <i class="feather icon-plus-circle cursor" (click)="addForm()"></i>
+                </a>
+                <ng-container *ngIf="!isAdmin && ![undefined, null, 2].includes(userTypes)">
+                    <a class="p-2">
+                        <i (click)="checkViewMode(true)" class="feather icon-arrow-left cursor"></i>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <ng-container *ngIf="isAdmin">
+            <app-admin [isAdminActive]="isAdmin" (moveToUser)="checkViewMode($event)"></app-admin>
+        </ng-container>
+        <ng-container *ngIf="!isAdmin">
+            <app-users></app-users>
+        </ng-container>
+    </div>
+</section>
+
+<admin-form *ngIf="openAdminForm" [closeModel]="openAdminForm" [Uid]="UserIds" (closeEvent)="checkAdminClosed($event.eventValue, $event.uid)"></admin-form>
+<!-- <app-user *ngIf="openUserForm"></app-user> -->

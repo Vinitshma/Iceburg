@@ -1,0 +1,24 @@
+
+    <div class="navbar-wrapper">
+        <div class="navbar-content scroll-div">
+            <ul class="nav pcoded-inner-navbar">
+                <ng-container *ngFor="let item of navigations">
+                    <!-- <li class="nav-item mt-3" [routerLink]="item.url" routerLinkActive="active">
+                        <a class="nav-link cursor"><span class="pcoded-micon"><i class="feather {{item.icon}}"></i></span><span class="pcoded-mtext">{{item.name}}</span></a>
+                    </li> -->
+                    
+                    <li class="nav-item mt-3" [ngClass]="item.childList? 'pcoded-hasmenu':''" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link cursor" [routerLink]="item?.url"><span class="pcoded-micon"><i class="feather {{item.icon}}"></i></span><span class="pcoded-mtext">{{item.name}}</span></a>
+                        <ng-container *ngIf="item?.childList.length != 0">
+                            <ul class="pcoded-submenu">
+                                <li *ngFor="let item2 of item?.childList" [routerLink]="item2.url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                    <a class="cursor">{{item2.name}}</a>
+                                </li>	                          
+                            </ul>
+                        </ng-container>
+                    </li>
+                </ng-container>
+            </ul>
+            
+        </div>
+    </div>

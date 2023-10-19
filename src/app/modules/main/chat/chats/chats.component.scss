@@ -1,0 +1,19 @@
+.ch_users{
+    display: flex;
+    align-items: baseline;
+    padding: 6px;
+    background: #81eed8;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-bottom: -1px;
+    .ch_profile{
+        background: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    .ch_lastseen{
+        position: absolute;
+        right: 2em; 
+    }
+}

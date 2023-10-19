@@ -1,0 +1,22 @@
+.log_strt{
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondry-prime-color);
+    /* background: linear-gradient(90deg, rgba(114,9,121,1) 35%, rgba(25,17,159,1) 100%, rgba(0,212,255,1) 100%); */
+}
+.container{
+    width: 500px;
+    background: #fff;
+    padding:20px 10px;
+    border-radius: 8px;
+}
+h3{
+    color: var(--black-color);
+}
+.btn-color{
+    background-color: var(--primary-color) !important;
+    color:var(--primary-light) !important ;
+}

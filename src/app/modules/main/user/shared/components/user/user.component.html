@@ -1,0 +1,87 @@
+<button data-bs-toggle="modal" style="display: none;" #openUserModel data-bs-target="#model_popupShow"></button>
+
+<div class="modal fade bd-example-modal-lg" id="model_popupShow" tabindex="-1" data-bs-backdrop="static"
+ data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update User</h5>
+                <button type="button" class="close" #dismisId (click)="close()" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="userForm">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group mb-3">
+                                <label>Fullname<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="fullname" class="form-control"
+                                [ngClass]="{'is-invalid': frm['fullname'].errors && (frm['fullname'].touched || frm['fullname'].dirty)}">
+                                <div class="text-danger" *ngIf="frm['fullname'].errors?.['required'] && (frm['fullname'].touched || frm['fullname'].dirty)">
+                                    This field is required.
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Username<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="username" class="form-control" minlength="5" maxlength="50"
+                                [ngClass]="{'is-invalid': frm['username'].errors && (frm['username'].touched || frm['username'].dirty)}">
+                                <div class="text-danger" *ngIf="frm['username'].invalid && (frm['username'].dirty || frm['username'].touched)">
+                                    <div *ngIf="frm['username'].errors?.['required']">This field is required.</div>
+                                    <span *ngIf="frm['username'].errors?.['minlength']">Username must be minimum of 5 character.</span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Email Id<span class="text-danger">*</span></label>
+                                <input type="email" formControlName="emailId" class="form-control"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                [ngClass]="{'is-invalid': frm['emailId'].errors && (frm['emailId'].touched || frm['emailId'].dirty)}">
+                                <div class="text-danger" *ngIf="frm['emailId'].invalid && (frm['emailId'].dirty || frm['emailId'].touched)">
+                                    <div *ngIf="frm['emailId'].errors?.['required']">This field is required.</div>
+                                    <span *ngIf="frm['emailId'].errors?.['pattern']">Ex. Someone@email.com</span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Phone Number<span class="text-danger">*</span></label>
+                                <input type="text" formControlName="phone" class="form-control"
+                                [ngClass]="{'is-invalid': frm['phone'].errors && (frm['phone'].touched || frm['phone'].dirty)}">
+                                <div class="text-danger" *ngIf="frm['phone'].invalid && (frm['phone'].dirty || frm['phone'].touched)">
+                                    <div *ngIf="frm['phone'].errors?.['required']">This field is required.</div>
+                                    <span *ngIf="frm['phone'].errors?.['minlength']">Phone must be of 10 digit.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label>DOB<span class="text-danger">*</span></label>
+                                <input type="date" formControlName="DOB" class="form-control"
+                                [ngClass]="{'is-invalid': frm['DOB'].errors && (frm['DOB'].touched || frm['DOB'].dirty)}">
+                                <div class="text-danger" *ngIf="frm['DOB'].errors?.['required'] && (frm['DOB'].touched || frm['DOB'].dirty)">
+                                    This field is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label>Gender<span class="text-danger">*</span></label>
+                                <div class="">
+                                    <input type="radio" formControlName="gender" value="1" id="gridRadios1">
+                                    <label for="gridRadios1">Male</label>&nbsp;
+                                    <input type="radio" formControlName="gender" value="2" id="gridRadios2">
+                                    <label for="gridRadios2">Female</label>
+                                </div>
+                                <div class="text-danger" *ngIf="frm['gender'].errors?.['required'] && (frm['gender'].touched || frm['gender'].dirty)">
+                                    This field is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3 d-flex justify-content-end">
+                            <button class="btn btn-primary mr-2" (click)="updateUser()">Update</button>
+                            <button class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
